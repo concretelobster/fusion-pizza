@@ -385,12 +385,13 @@
       'https://script.google.com/macros/s/AKfycbx42Vl38ZOmEQj27jhS0koIBOevTXPM2m1NZYiErRAW2naPywq3YwUVS_7jg2YoPJTK/exec',
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
-      }
-    );
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'text/plain'
+    },
+    body: JSON.stringify(orderData)
+  }
+);
 
     alert('Order submitted successfully!');
 
