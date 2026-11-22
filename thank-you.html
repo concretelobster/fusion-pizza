@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed – Fusion Pizza</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 1.5rem 12% 4rem;
+      background-color: #000;
+      background-image: url('background.png');
+      background-size: 100% auto;
+      background-position: top center;
+      background-repeat: repeat-y;
+      color: #a20001;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    main {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 220px;
+      width: 75%;
+      height: auto;
+      margin: 0 auto 1rem;
+      display: block;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      line-height: 1.5;
+      margin: 0.5rem 0 1.25rem;
+    }
+
+    .receipt-box {
+      border: 1.5px solid #a20001;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.5rem;
+    }
+
+    .receipt-box h2 {
+      font-size: 1.05rem;
+      margin: 0 0 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #a20001;
+    }
+
+    .receipt-row {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .back-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 0.9rem;
+      background-color: #a20001;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <!-- Update src below if your logo file has a different name (e.g., logo.png) -->
+    <img src="logo.png" alt="Fusion Pizza" class="logo">
+
+    <h1>Thank you for your order!</h1>
+    <p id="confirmMessage">We've received your order and sent a confirmation email.</p>
+
+    <div class="receipt-box" id="receiptBox" style="display: none;">
+      <h2>Order Summary</h2>
+      <div class="receipt-row"><strong>Name:</strong> <span id="recName"></span></div>
+      <div class="receipt-row"><strong>Collection Time:</strong> <span id="recTime"></span></div>
+      <div class="receipt-row"><strong>Items:</strong> <span id="recItems"></span></div>
+      <div class="receipt-row"><strong>Total:</strong> <span id="recTotal"></span></div>
+    </div>
+
+    <a href="index.html" class="back-btn">Place Another Order</a>
+  </main>
+
+  <script>
+    const savedOrder = sessionStorage.getItem('lastPizzaOrder');
+
+    if (savedOrder) {
+      const order = JSON.parse(savedOrder);
+      document.getElementById('confirmMessage').textContent =
+        `Thanks ${order.name}! We've sent a confirmation email to ${order.customerEmail}.`;
+
+      document.getElementById('recName').textContent = order.name;
+      document.getElementById('recTime').textContent = order.collectionTime;
+      document.getElementById('recItems').textContent = order.orderSummary;
+      document.getElementById('recTotal').textContent = order.orderTotal;
+      document.getElementById('receiptBox').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
