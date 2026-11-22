@@ -406,16 +406,9 @@
     body: JSON.stringify(orderData)
   }
 );
+    sessionStorage.setItem('lastPizzaOrder', JSON.stringify(orderData));
+    window.location.href = 'thank-you.html';
 
-    alert('Order submitted successfully!');
-
-    form.reset();
-
-    qtyInputs.forEach(input => {
-      input.value = 0;
-    });
-
-    updateOrder();
 
   } catch (error) {
 
