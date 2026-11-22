@@ -6,21 +6,28 @@
   <title>Fusion Pizza Menu</title>
 
   <style>
-    body {
+        body {
       font-family: system-ui, sans-serif;
       margin: 0;
       padding: 1.5rem 1rem;
       background-color: #000;
       background-image: url('background.png');
-      background-size: 100% auto; /* Scales width to fit screen, keeps aspect */
+      background-size: 100% auto;
       background-position: top center;
-      background-repeat: repeat-y; /* Repeats vertically for the full page height */
+      background-repeat: repeat-y;
       color: #a20001;
       display: flex;
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
       box-sizing: border-box;
+    }
+
+    /* Push content inward on mobile so it clears the background border squares */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.25rem 2.25rem; /* Increase 2.25rem if squares still touch */
+      }
     }
 
     .order-container {
