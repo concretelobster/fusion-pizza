@@ -397,8 +397,9 @@
       }
     }
 
-    qtyInputs.forEach(input => {
+    tyInputs.forEach(input => {
       input.addEventListener('input', updateOrder);
+      input.addEventListener('change', updateOrder);
     });
 
     form.addEventListener('submit', async (e) => {
