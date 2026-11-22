@@ -294,7 +294,7 @@
 
 </div>
 
-  <label class="field-label" for="custEmail">Email Address</label>
+  <label class="field-label" for="custEmail">Customer Email</label>
   <input id="custEmail" name="customer_email" type="email" required>
 </div>
 
@@ -378,6 +378,7 @@
 
   const orderData = {
     name: document.getElementById('custName').value,
+    customerEmail: document.getElementById('custEmail').value,
     phone: document.getElementById('custPhone').value,
     collectionTime: document.getElementById('slot').value,
     orderSummary: hiddenSummary.value,
