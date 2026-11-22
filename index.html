@@ -353,18 +353,64 @@
       input.addEventListener('input', updateOrder);
     });
 
-    form.addEventListener('submit', (e) => {
-      let totalPizzas = 0;
+    form.addEventListener('submit', async (e) => {
 
-      qtyInputs.forEach(input => {
-        totalPizzas += (parseInt(input.value) || 0);
-      });
+  e.preventDefault();
 
-      if (totalPizzas === 0) {
-        e.preventDefault();
-        qtyError.style.display = 'block';
+  let totalPizzas = 0;
+
+  qtyInputs.forEach(input => {
+    totalPizzas += (parseInt(input.value) || 0);
+  });
+
+  if (totalPizzas === 0) {
+    qtyError.style.display = 'block';
+    return;
+  }
+
+  qtyError.style.display = 'none';
+
+  const orderData = {
+    name: document.getElementById('custName').value,
+    phone: document.getElementById('custPhone').value,
+    collectionTime: document.getElementById('slot').value,
+    orderSummary: hiddenSummary.value,
+    orderTotal: hiddenTotal.value,
+    notes: document.getElementById('notes').value
+  };
+
+  try {
+
+    await fetch(
+      'https://script.google.com/macros/s/AKfycbx42Vl38ZOmEQj27jhS0koIBOevTXPM2m1NZYiErRAW2naPywq3YwUVS_7jg2YoPJTK/exec',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(orderData)
       }
+    );
+
+    alert('Order submitted successfully!');
+
+    form.reset();
+
+    qtyInputs.forEach(input => {
+      input.value = 0;
     });
+
+    updateOrder();
+
+  } catch (error) {
+
+    alert('Unable to submit order.');
+
+    console.error(error);
+
+  }
+
+});
   </script>
 
 </body>
