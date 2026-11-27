@@ -65,11 +65,16 @@
     }
 
     .menu-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 80px;
+      gap: 1rem;
+      align-items: start;
       padding: 0.75rem 0;
       border-bottom: 1px solid #a20001;
+    }
+
+    .qty-input {
+      width: 80px;
     }
 
     .menu-info strong {
